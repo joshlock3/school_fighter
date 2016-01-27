@@ -1,0 +1,6 @@
+= form_for @user do |f|
+  fieldset
+    div
+      = f.text_field :name, placeholder: "Enter your name"
+    div
+      = f.submit 'Next Step'

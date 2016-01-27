@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'users/create'
-
-  get 'users/show'
-
   root to: 'users#new'
+
+  resources :users, only: [:new, :create, :index, :destroy] do
+    resources :steps, only: [:show, :update], controller: 'user/steps'
+  end
 
   resources :versus, only: [] do
     collection do

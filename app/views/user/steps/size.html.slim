@@ -1,0 +1,13 @@
+= form_for @user, method: :put, url: wizard_path do |f|
+  - if f.object.errors.any?
+    .error_messages
+      - f.object.errors.full_messages.each do |error|
+        p= error
+  fieldset
+    legend Size
+    div
+      = f.text_field :school_size, placeholder: "At a party, Which would you be?"
+    div
+      = f.text_field :location_type, placeholder: "Which do you prefer?"
+    div
+      = f.submit 'Next Step'

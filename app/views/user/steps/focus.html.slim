@@ -1,0 +1,13 @@
+= form_for @user, method: :put, url: wizard_path do |f|
+  - if f.object.errors.any?
+    .error_messages
+      - f.object.errors.full_messages.each do |error|
+        p= error
+  fieldset
+    legend Focus
+    div
+      = f.text_field :sport_id, placeholder: "What's your favorite sport?"
+    div
+      = f.text_field :sport_acedemic_balance, placeholder: "Hulk or Bruce Banner?"
+    div
+      = f.submit 'Next Step'

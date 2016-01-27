@@ -15,5 +15,18 @@
 #
 
 class User < ActiveRecord::Base
-  validates :name, presence: true, null: false
+  cattr_accessor :form_steps do
+    %w(region size focus)
+  end
+
+  attr_accessor :form_step
+
+  validates :zip, :season, presence: true, if: -> { required_for_step?(:region) }
+  validates :school_size, :location_type, presence: true, if: -> { required_for_step?(:size) }
+  validates :sport_id, :sport_acedemic_balance, presence: true, if: -> { required_for_step?(:focus) }
+
+  def required_for_step?(step)
+    return true if form_step.nil?
+    return true if form_steps.index(step.to_s) <= form_steps.index(form_step)
+  end
 end

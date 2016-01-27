@@ -1,3 +1,10 @@
 <div>Round 1: <%= @round1_result %></div>
 <div>Round 2: <%= @round2_result %></div>
 <div>Round 3: <%= @round3_result %></div>
+
+<div id="canvasDiv"></div>
+
+<script type="text/javascript">
+  var arena = new Arena(document.getElementById("canvasDiv"), 960, 500);
+</script>
+

@@ -1,0 +1,2 @@
+module VersusHelper
+end

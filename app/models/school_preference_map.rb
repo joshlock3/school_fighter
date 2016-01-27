@@ -17,34 +17,34 @@
 class SchoolPreferenceMap < ActiveRecord::Base
   belongs_to :school
 
-  SPORTS = [["Football",17633]
-["Softball",17634]
-["Wrestling",17635]
-["Men's Basketball",17638]
-["Women's Basketball",17639]
-["Men's Rowing",17644]
-["Women's Rowing",17645]
-["Men's Diving",17652]
-["Women's Diving",17653]
-["Men's Golf",17659]
-["Women's Golf",17660]
-["Men's Ice Hockey",17665]
-["Women's Ice Hockey",17666]
-["Men's Soccer",17683]
-["Women's Soccer",17684]
-["Men's Swimming",17687]
-["Women's Swimming",17688]
-["Men's Tennis",17689]
-["Women's Tennis",17690]
-["Men's Track",17691]
-["Women's Track",17692]
-["Men's Volleyball",17695]
-["Women's Volleyball",17696]
-["Men's Water Polo",17701]
-["Women's Water Polo",17702]
-["Baseball",17706]
-["Men's Lacrosse",17707]
-["Women's Lacrosse",17708]
+  SPORTS = [["Football",17633],
+["Softball",17634],
+["Wrestling",17635],
+["Men's Basketball",17638],
+["Women's Basketball",17639],
+["Men's Rowing",17644],
+["Women's Rowing",17645],
+["Men's Diving",17652],
+["Women's Diving",17653],
+["Men's Golf",17659],
+["Women's Golf",17660],
+["Men's Ice Hockey",17665],
+["Women's Ice Hockey",17666],
+["Men's Soccer",17683],
+["Women's Soccer",17684],
+["Men's Swimming",17687],
+["Women's Swimming",17688],
+["Men's Tennis",17689],
+["Women's Tennis",17690],
+["Men's Track",17691],
+["Women's Track",17692],
+["Men's Volleyball",17695],
+["Women's Volleyball",17696],
+["Men's Water Polo",17701],
+["Women's Water Polo",17702],
+["Baseball",17706],
+["Men's Lacrosse",17707],
+["Women's Lacrosse",17708],
 ["Field Hockey",17711]]
 
 end

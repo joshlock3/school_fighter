@@ -16,3 +16,27 @@ schools = School.create([{name: "University of Central Florida", logo: "https://
 {name:"Georgetown College", logo: "https://recruit-match.ncsasports.org/fasttrack/clientimages/14599college.jpg", mascot_name: "Tigers", ipeds_id: 156745},
 {name:"Huntington University", logo: "https://recruit-match.ncsasports.org/fasttrack/clientimages/14599college.jpg", mascot_name: "Foresters", ipeds_id: 150941},
 {name:"Kansas City Kansas Community College", logo: "https://recruit-match.ncsasports.org/fasttrack/clientimages/14673college.jpg", mascot_name: "Blue Devils", ipeds_id: 155292}])
+
+
+#  id                     :integer          not null, primary key
+#  season                 :integer
+#  school_size            :integer
+#  location_type          :integer
+#  zip                    :string
+#  sport_id               :integer
+#  sport_acedemic_balance :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  school_id              :integer          not null
+
+school_preference_maps = SchoolPreferenceMap.create(
+  [{ school_id: School.find_by(ipeds_id: 132903).id, season: 1, school_size: 1, location_type: 2, sport_acedemic_balance: 1 },
+  { school_id: School.find_by(ipeds_id: 170976).id, season: 2, school_size: 1, location_type: 1, sport_acedemic_balance: 0 },
+  { school_id: School.find_by(ipeds_id: 221999).id, season: 2, school_size: 1, location_type: 1, sport_acedemic_balance: 0 },
+  { school_id: School.find_by(ipeds_id: 110680).id, season: 1, school_size: 1, location_type: 2, sport_acedemic_balance: 0 },
+  { school_id: School.find_by(ipeds_id: 155681).id, season: 0, school_size: 2, location_type: 2, sport_acedemic_balance: 0 },
+  { school_id: School.find_by(ipeds_id: 175616).id, season: 1, school_size: 2, location_type: 0, sport_acedemic_balance: 1 },
+  { school_id: School.find_by(ipeds_id: 238430).id, season: 0, school_size: 2, location_type: 0, sport_acedemic_balance: 1 },
+  { school_id: School.find_by(ipeds_id: 156745).id, season: 2, school_size: 0, location_type: 2, sport_acedemic_balance: 1 },
+  { school_id: School.find_by(ipeds_id: 150941).id, season: 0, school_size: 0, location_type: 2, sport_acedemic_balance: 1 },
+  { school_id: School.find_by(ipeds_id: 155292).id, season: 2, school_size: 0, location_type: 1, sport_acedemic_balance: 1 }])

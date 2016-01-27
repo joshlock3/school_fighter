@@ -63,15 +63,21 @@ class VersusController < ApplicationController
     end
   end
 
-  def print_result(points)
-    return 'win' if points > 2
-    return 'draw' if points == 2
-    'loss'
-  end
-
   def compare_zips
     distance1 = @user.distance_from(@my_school.coordinates)
     distance2 = @user.distance_from(@opp_school.coordinates)
     distance1 < distance2 ? 2 : 0
+  end
+
+  def print_result(points)
+    result_in_worlds =
+      if points >= 3
+       'win'
+     elsif points <= 1
+       'loss'
+     else
+       'draw'
+     end
+    "#{result_in_worlds} (#{points})"
   end
 end

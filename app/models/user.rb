@@ -23,10 +23,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :form_step
 
-
   geocoded_by :zip
   after_validation :geocode, if: ->(obj){ obj.zip.present? && obj.zip_changed? }
-  
+
   validates :zip, :season, presence: true, if: -> { required_for_step?(:region) }
   validates :school_size, :location_type, presence: true, if: -> { required_for_step?(:size) }
   validates :sport_id, :sport_acedemic_balance, presence: true, if: -> { required_for_step?(:focus) }

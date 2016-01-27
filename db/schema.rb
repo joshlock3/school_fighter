@@ -48,18 +48,6 @@ ActiveRecord::Schema.define(version: 20160127195641) do
     t.float    "longitude"
   end
 
-  create_table "user_preferences", force: :cascade do |t|
-    t.integer  "season"
-    t.integer  "school_size"
-    t.integer  "location_type"
-    t.string   "zip"
-    t.integer  "sport_id"
-    t.integer  "sport_acedemic_balance"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "user_id",                null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

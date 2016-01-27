@@ -30,7 +30,9 @@ group :production, :staging do
   gem 'rails_12factor'                      # Run Rails the 12factor way
 end
 
+gem 'slim'
 gem 'thin'                                # A thin and fast web server
+gem 'annotate'   
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

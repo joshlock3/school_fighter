@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rspec-rails'
 
+gem 'geocoder'
+
 group :production, :staging do
   gem "heroku-forward"                      # Beat Heroku's 60s boot timeout with a proxy.
   gem 'rails_12factor'                      # Run Rails the 12factor way

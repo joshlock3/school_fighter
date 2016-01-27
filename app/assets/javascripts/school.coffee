@@ -38,12 +38,11 @@ class window.School
 
     @context.drawImage(@images["right-arm"], x + 130, y + 150 - @breathAmt)
     @context.drawImage(@images["body"], x + 10, y + 150)
-    @context.drawImage(@images["head"], x, y)
+    @context.drawImage(@images["head"], x, y - @breathAmt)
     @context.drawImage(@images["legs"], x - 25, y + 250) # x offset -25
-    @context.drawImage(@images["left-arm"], x, y + 150)
+    @context.drawImage(@images["left-arm"], x, y + 150 - @breathAmt)
 
-  updateBreath: ->
-    console.log "breath"
+  updateBreath: =>
     if @breathDir == 1
       # breath in
       @breathAmt -= @breathInc
@@ -54,4 +53,3 @@ class window.School
       @breathAmt += @breathInc
       if @breathAmt > @breathMax
         @breathDir = 1
-    return

@@ -3,7 +3,7 @@ class window.Arena
 
   constructor: (@canvasDiv, @canvasWidth, @canvasHeight) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
-    @school1 = new School('delta_state', @context)
+    @school1 = new DeltaState(@context)
 
     setInterval(@redraw, 1000 / @fps)
 

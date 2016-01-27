@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  resources :versus, only: [] do
+    collection do
+     get 'school_picker'
+     get 'arena'
+     get 'summary'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

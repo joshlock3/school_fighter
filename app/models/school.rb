@@ -13,7 +13,7 @@
 #
 
 class School < ActiveRecord::Base
-  has_one :school_preference_map
+  has_one :preferences, class_name: 'SchoolPreferenceMap'
 
   def coaches_for_sport(sport_id)
     # grab coach(es) from this school for athlete's sport

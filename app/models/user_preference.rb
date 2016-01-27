@@ -11,6 +11,7 @@
 #  sport_acedemic_balance :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  user_id                :integer          not null
 #
 
 class UserPreference < ActiveRecord::Base

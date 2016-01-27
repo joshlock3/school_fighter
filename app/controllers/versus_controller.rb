@@ -1,15 +1,18 @@
 class VersusController < ApplicationController
+  before_filter :set_schools, only: [:arena, :summary]
+
   def school_picker
     @schools = School.all
   end
 
   def arena
-    @my_school = School.find(params[:my_school_id])
-    @opponent_school = School.find(params[:opponent_school_id])
   end
 
   def summary
-    @my_results
-    @opponent_results
+  end
+
+  def set_schools
+    @my_school = School.find(params[:my_school_id])
+    @opponent_school = School.find(params[:opponent_school_id])
   end
 end

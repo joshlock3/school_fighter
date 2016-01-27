@@ -29,6 +29,8 @@ group :production, :staging do
   gem "heroku-forward"                      # Beat Heroku's 60s boot timeout with a proxy.
   gem 'rails_12factor'                      # Run Rails the 12factor way
 end
+
+gem 'thin'                                # A thin and fast web server
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -3,11 +3,13 @@
     .error_messages
       - f.object.errors.full_messages.each do |error|
         p= error
-  fieldset
-    legend Focus
-    div
-      = f.text_field :sport_id, placeholder: "What's your favorite sport?"
-    div
-      = f.text_field :sport_acedemic_balance, placeholder: "Hulk or Bruce Banner?"
-    div
-      = f.submit 'Next Step'
+  div
+    = f.label "What's your favorite sport?"
+    br
+    = f.select :sport_id, SchoolPreferenceMap::SPORTS, :include_blank => "Select"
+  div
+    = f.label "Hulk or Bruce Banner?"
+    br
+    = f.select :sport_acedemic_balance, [["Hulk",0],["Bruce Banner",1]], :include_blank => "Select"
+  div
+    = f.submit 'Finish'

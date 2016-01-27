@@ -1,6 +1,6 @@
 = form_for @user do |f|
-  fieldset
     div
-      = f.text_field :name, placeholder: "Enter your name"
+      = f.label "Please enter your name"
+      = f.text_field :name
     div
-      = f.submit 'Next Step'
+      = f.submit 'Next'

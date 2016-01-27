@@ -13,7 +13,7 @@ class User::StepsController < ApplicationController
     unless step == "focus"
       render_wizard @user
     else
-      redirect_to school_picker_versus_path
+      redirect_to school_picker_versus_path(user_id: @user.id)
     end
   end
 

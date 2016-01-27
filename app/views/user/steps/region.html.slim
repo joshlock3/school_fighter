@@ -3,13 +3,13 @@
     .error_messages
       - f.object.errors.full_messages.each do |error|
         p= error
-  fieldset
-    legend Region
-    div
-      = f.text_field :zip, placeholder: "What's your zip code?"
-    div
-      = f.text_field :season, placeholder: "What season do you like the best?"
-    div
-      = f.submit 'Next Step'
-
-/ {"Winter" => "0", "Summer" => "1", "Spring" => "2", "Fall" => "2"}
+  div
+    = f.label "What's your zip code?"
+    br
+    = f.text_field :zip
+  div
+    = f.label "What is you favorite season?"
+    br
+    = f.select :season, [['Winter', 0], ['Summer', 1], ['Spring', 2], ['Fall', 2]], :include_blank => "Select"
+  div
+    = f.submit 'Next'

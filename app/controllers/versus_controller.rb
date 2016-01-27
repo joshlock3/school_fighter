@@ -70,8 +70,8 @@ class VersusController < ApplicationController
   end
 
   def compare_zips
-    # TODO geolocator gem?
-    # return 2 or 0
-    [2, 0].sample
+    distance1 = @user.distance_from(@my_school.coordinates)
+    distance2 = @user.distance_from(@opp_school.coordinates)
+    distance1 < distance2 ? 2 : 0
   end
 end

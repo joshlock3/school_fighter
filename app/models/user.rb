@@ -15,5 +15,10 @@
 #
 
 class User < ActiveRecord::Base
+  include Geolocatable
+
   validates :name, presence: true, null: false
+
+  geocoded_by :zip
+  after_validation :geocode, if: ->(obj){ obj.zip.present? && obj.zip_changed? }
 end

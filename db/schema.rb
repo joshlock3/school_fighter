@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127173830) do
+ActiveRecord::Schema.define(version: 20160127195641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 20160127173830) do
     t.integer  "ipeds_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer  "season"
+    t.integer  "school_size"
+    t.integer  "location_type"
+    t.string   "zip"
+    t.integer  "sport_id"
+    t.integer  "sport_acedemic_balance"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",                null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +70,8 @@ ActiveRecord::Schema.define(version: 20160127173830) do
     t.integer  "location_type"
     t.integer  "sport_id"
     t.integer  "sport_acedemic_balance"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end

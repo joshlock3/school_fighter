@@ -32,7 +32,8 @@ end
 
 gem 'slim'
 gem 'thin'                                # A thin and fast web server
-gem 'annotate'   
+gem 'annotate'
+gem 'wicked'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -71,10 +71,16 @@ ActiveRecord::Schema.define(version: 20160128164614) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "season"
+    t.integer  "school_size"
+    t.integer  "location_type"
+    t.string   "zip"
+    t.integer  "sport_id"
+    t.integer  "sport_acedemic_balance"
   end
 
 end

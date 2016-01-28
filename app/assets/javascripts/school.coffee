@@ -106,6 +106,9 @@ class BaseSchool
 class School extends BaseSchool
   fighting: 'right'
   fightState: false
+  startDistanceTraveled: 0
+  startDistanceIncrement: 10
+  startDistance: 150
 
   imageOffset: {
     'body': {x: 0, y: 0},
@@ -134,6 +137,20 @@ class School extends BaseSchool
 
   unFight: =>
     @fightState = false
+
+
+  start: ->
+    if @startDistanceTraveled < @startDistance
+      setTimeout( =>
+        if @isReversed
+          @charX -= @startDistanceIncrement
+        else
+          @charX += @startDistanceIncrement
+        @startDistanceTraveled += @startDistanceIncrement
+        @start()
+      , 190)
+
+
 
 
 # END School

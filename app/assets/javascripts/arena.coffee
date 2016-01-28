@@ -10,6 +10,8 @@ class window.Arena
 
     setInterval(@redraw, 1000 / @fps)
 
+    @school1.start()
+    @school2.start()
     setInterval( =>
       @school1.fight()
     , 3000)

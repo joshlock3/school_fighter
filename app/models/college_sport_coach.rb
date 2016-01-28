@@ -1,3 +1,3 @@
 class CollegeSportCoach < ActiveRecord::Base
-  belongs_to: school
+  #belongs_to: school
 end

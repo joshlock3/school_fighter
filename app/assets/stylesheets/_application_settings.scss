@@ -1,0 +1,229 @@
+//------------------
+// Colors
+//------------------
+
+$color_primary: rgb(51, 51, 51);          // Black
+$color_secondary: rgb(244, 157, 24);      // Orange
+$color_tertiary: rgb(39, 151, 186);       // Blue
+$color_quaternary: rgb(115, 115, 115);    // Medium gray
+$color_primary_light: lighten($color_primary, 40%);
+$color_primary_lighter: lighten($color_primary, 60%);
+$color_secondary_light: #F7B34C;          // Orange for Dark Backgrounds
+$red: rgb(183, 71, 48);                   // Accent Red
+$green: rgb(116, 176, 74);                // Accent Green
+
+$default_link_color: $color_tertiary;
+$default_button_color: rgb(236, 236, 236);  // Light gray
+$medium_gray_button_color: #aaa;            // Medium gray
+$button_action_color: rgb(116, 176, 74);    // Green
+$border_color: rgb(225, 225, 225);          // Light gray
+$background_color: #fafafa;                 // White
+$alert-background: #ebfaff;                 // Light blue
+$ncsa_purple: #552988;
+
+$facebook_blue: #3b5998;
+$twitter_blue: #4099ff;
+$google_red: #d34836;
+$youtube_red: rgb(196,48,43);
+
+$bg-light-gray: #efefef;
+$bg-dark-gray: #727272;
+$background-blue: #ebfaff;             // Light blue
+$background-green: #dcf6dd;
+$background-yellow: #FCF8E5;
+$background-red: #F9E8E8;
+
+$emergency-red: $red;
+$white: #fefefe;
+$dark-gray: #5e5e5e;                  // Graying out inputs on dark backgrounds
+$base-font-color: rgb(68, 68, 68);    // Dark Gray
+$dashboard-user-header: $base-font-color;
+
+$admin-x: #BB4931;   // Red
+$admin-check: #73AD50;  // Green
+
+//------------------
+// Typography - 16px, Major Third, http://www.modularscale.com/?16&px&1.25&web&text
+//------------------
+
+$base-font-size: 1rem;
+$base-font-number: 16;
+$site-ratio: 1.25;
+
+// Typography
+$primary-site-font: "PT Sans", Tahoma, Geneva, sans-serif;
+$secondary-site-font: "PT Sans Narrow", Impact, Tahoma, Geneva, sans-serif;
+$baseline: ms(1);
+$h1-font-size: ms(4) !default;
+$h2-font-size: ms(3) !default;
+$h3-font-size: ms(2) !default;
+$h4-font-size: ms(1) !default;
+$h5-font-size: ms(0) !default;
+$h6-font-size: $base-font-size !default;
+$small-font-size: ms(-1) !default;
+
+
+//------------------
+// Grid Layout and Media Queries
+//------------------
+
+$site-width: 69.39 * $base-font-size; // 69.39 == $site_ratio^19
+
+$breakpoints: (
+        "mobile" : 320px,
+        "tablet" : 700px,
+        "screen" : 900px
+);
+
+
+
+//------------------
+// Mixins
+//------------------
+
+
+// Stretch div to fit parent
+
+@mixin stretch-to-fit {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+// Vertical Align from http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// Prevent Links from Breaking Containers
+
+@mixin word-wrap() {
+  word-break:     break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens:    auto;
+  hyphens:         auto;
+}
+
+// Turn Links that are Too Long into Ellipses
+
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Shadow for all box level elements (same light source)
+@mixin box-shadow {
+  box-shadow: 0 2px 1px rgba(51, 51, 51, 0.15);
+}
+
+@mixin radial-gradient($color: rgb(0,0,0), $starting-alpha: 0.45) {
+
+  background: rgba($color, $starting-alpha); // For IE 9
+  background: radial-gradient(ellipse at center, rgba($color, $starting-alpha) 0%, rgba($color, $starting-alpha+0.25) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+// Vertical center with flexbox (only use with graceful degredation)
+
+@mixin vertical-center {
+
+  // IE10 (doesnt work in IE9)
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-align: center;
+
+  // Everyone else
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// Responsive
+
+@function breakpoint($key) {
+  @if map_has_key($breakpoints, $key) {
+    @return map_get($breakpoints, $key);
+  }
+}
+@mixin respond-to($media) {
+  @media (min-width: breakpoint($media)) {
+    @content;
+  }
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Block show hide mixins based off of media query mixin
+@mixin show-on($media) {
+  display:none;
+  @include respond-to($media) {
+    display: block;
+  }
+}
+
+@mixin hide-on($media) {
+//  display:block;
+  @include respond-to($media) {
+    display: none !important;
+  }
+}
+
+// Clearfix
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%ellipsis-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+%select-nostyle {
+
+  // Only for webkit and moz
+
+  // Put the following in for IE:
+  //  select::-ms-expand {
+  //    display: none;
+  //  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  background: transparent;
+  border: none;
+}
+
+%hide {
+  visibility: hidden;
+  position: absolute;
+  top: -99999px;
+  text-indent: -99999px;
+}
+
+%show {
+  visibility: visible;
+  position: default;
+  top: auto;
+  text-indent: auto;
+}

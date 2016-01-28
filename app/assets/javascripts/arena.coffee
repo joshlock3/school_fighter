@@ -1,5 +1,8 @@
 class window.Arena
   fps: 30,
+  startMessageCount: 0
+  startMessageLimit: 30
+
 
   constructor: (@canvasDiv, @canvasWidth, @canvasHeight, @mycollegeipeds, @oppcollegeipeds) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
@@ -46,21 +49,26 @@ class window.Arena
       @canvas = G_vmlCanvasManager.initElement(@canvas)
 
     @context = @canvas.getContext("2d"); # Grab the 2d canvas context
-
     @canvas.width = @canvas.width; # clears the canvas
 
   redraw: =>
-    @context.textAlign = 'center'
-    @context.fillStyle = '#ffffff'
-    @context.font="30px 'Press Start 2P'"
-    @context.fillText('Fight!', @canvasWidth / 2, @canvasHeight / 2)
+    if @school1.allImagesLoaded
+      @canvas.width = @canvas.width # clears the canvas
+      @fightMessage()
+      @school1.redraw()
+      @school2.redraw()
 
-    #if @school1.allImagesLoaded
-      #@canvas.width = @canvas.width # clears the canvas
-      #@school1.redraw()
-      #@school2.redraw()
+  fightMessage: () ->
+    if @startMessageCount < @startMessageLimit
+      console.log @startMessageCount
+      @context.textAlign = 'center'
+      @context.fillStyle = '#ffffff'
+      @context.font="30px 'Press Start 2P'"
+      @context.fillText('Fight!', @canvasWidth / 2, @canvasHeight / 2)
+      @startMessageCount += 1
 
   startRound: ->
+    @startMessageCount = 0
 
     @school1.start()
     @school2.start()

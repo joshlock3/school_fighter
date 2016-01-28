@@ -1,15 +1,21 @@
-= form_for @user, method: :put, url: wizard_path do |f|
-  - if f.object.errors.any?
-    .error_messages
-      - f.object.errors.full_messages.each do |error|
-        p= error
-  div
-    = f.label "What's your zip code?"
-    br
-    = f.text_field :zip
-  div
-    = f.label "What is you favorite season?"
-    br
-    = f.select :season, [['Winter', 0], ['Summer', 1], ['Spring', 2], ['Fall', 2]], :include_blank => "Select"
-  div
-    = f.submit 'Next'
+
+section
+  .container
+
+    .user-info
+
+      = form_for @user, method: :put, url: wizard_path do |f|
+        - if f.object.errors.any?
+          .error_messages
+            - f.object.errors.full_messages.each do |error|
+              p= error
+        div
+          = f.label "What's your zip code?"
+          br
+          = f.text_field :zip
+        div
+          = f.label "What's your favorite season?"
+          br
+          = f.select :season, [['Winter', 0], ['Summer', 1], ['Spring', 2], ['Fall', 2]], :include_blank => "Select Season"
+        div
+          = f.submit 'Next'

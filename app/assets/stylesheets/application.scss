@@ -8,6 +8,7 @@
 html {
   background-color: #000;
   color: #fff;
+  font-size: 1em;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
 }
@@ -33,66 +34,155 @@ a {
 }
 
 .hero {
-  $base-border-radius: 3px !default;
-  $action-color: #477DCA !default;
-  $large-screen: em(860) !default;
-  $hero-background-top: #7F99BE;
-  $hero-background-bottom: #20392B;
-  $hero-color: white;
-  $gradient-angle: 10deg;
-  $hero-image: 'http://vignette2.wikia.nocookie.net/streetfighter/images/f/f6/SF_Logo.png/revision/latest?cb=20130310140822';
+  margin-top: 5em;
+  position: relative;
 
-
-  background-image: url($hero-image);
-
-  // background-color: #324766;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: contain;;
-  padding-bottom: 3em;
-
-  .hero-logo img {
-    height: 4em;
-    margin-bottom: 1em;
+  .paper {
+    width: 100%;
+    position: absolute;
+    visibility: hidden;
+    top: -50px;
   }
 
-  .hero-inner {
-    @include outer-container;
-    @include clearfix;
-    margin: auto;
-    padding: 3.5em;
-    text-align: center;
-
-    .hero-copy {
-      text-align: center;
-
-      h1 {
-        color: $hero-color;
-        font-size: 1.6em;
-        margin-bottom: 0.5em;
-
-        @include media($large-screen) {
-          font-size: 1.8em;
-        }
-      }
-
-      p {
-        color: $hero-color;
-        line-height: 1.4em;
-        margin: 0 auto 3em auto;
-
-        @include media($large-screen) {
-          font-size: 1.1em;
-          max-width: 40%;
-        }
-      }
-    }
+  .hero-logo img {
+    margin: 0 auto;
+    width: 700px;
+    height: 370px;
   }
 }
 
 .start {
+  margin-top: 10em;
+
   .start-button {
-    margin-top: 3em;
     font-size: 1.5em;
+    animation: blink 3s steps(5, start) infinite;
+    -webkit-animation: blink 1s steps(5, start) infinite;
   }
+}
+
+// Form
+
+.user-info {
+  margin-top: 5em;
+}
+
+label {
+  text-transform: capitalize;
+  font-size: 1.5em;
+}
+
+input[type=text] {
+  display: block;
+  margin: 2em auto;
+  font-size: 1.5em;
+  padding: .4em .5em;
+  width: 60%;
+  text-align: center;
+  font-family: 'Press Start 2P';
+}
+
+select {
+  display: block;
+  margin: 2em auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: .4em .5em;
+  width: 60%;
+  text-align: center;
+  font: 1.5em 'Press Start 2P';
+  border-radius: 0;
+  border: 4px solid #727272;
+  text-transform: capitalize;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="submit"] {
+  font-size: 1.2em;
+  background-color: $button_action_color;
+  border: none;
+  padding: .5em 1.5em;
+  color: #fff;
+  font-family: 'Press Start 2P';
+  border: 4px solid #727272;
+  margin-top: 5em;
+
+  &:hover {
+    background-color: darken($button_action_color, 30%);
+    transition: .3s ease all;
+    cursor: pointer;
+  }
+}
+
+.error_messages {
+  margin-bottom: 5em;
+  color: $color_secondary;
+}
+
+// Animations
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.slideDown{
+	animation-name: slideDown;
+	-webkit-animation-name: slideDown;
+	animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	visibility: visible !important;
+}
+@keyframes slideDown {
+	0% {
+		transform: translateY(-100%);
+	}
+	50%{
+		transform: translateY(8%);
+	}
+	65%{
+		transform: translateY(-4%);
+	}
+	80%{
+		transform: translateY(4%);
+	}
+	95%{
+		transform: translateY(-2%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+@-webkit-keyframes slideDown {
+	0% {
+		-webkit-transform: translateY(-100%);
+	}
+	50%{
+		-webkit-transform: translateY(8%);
+	}
+	65%{
+		-webkit-transform: translateY(-4%);
+	}
+	80%{
+		-webkit-transform: translateY(4%);
+	}
+	95%{
+		-webkit-transform: translateY(-2%);
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+	}
 }

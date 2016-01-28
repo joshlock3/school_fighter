@@ -1,15 +1,21 @@
-= form_for @user, method: :put, url: wizard_path do |f|
-  - if f.object.errors.any?
-    .error_messages
-      - f.object.errors.full_messages.each do |error|
-        p= error
-  div
-    = f.label "What's your favorite sport?"
-    br
-    = f.select :sport_id, SchoolPreferenceMap::SPORTS, :include_blank => "Select"
-  div
-    = f.label "Hulk or Bruce Banner?"
-    br
-    = f.select :sport_acedemic_balance, [["Hulk",0],["Bruce Banner",1]], :include_blank => "Select"
-  div
-    = f.submit 'Finish'
+section
+  .container
+
+    .user-info
+
+    = form_for @user, method: :put, url: wizard_path do |f|
+      - if f.object.errors.any?
+        .error_messages
+          p Sport can't be blank
+          p Alter Ego can't be blank
+
+      div
+        = f.label "What's your favorite sport?"
+        br
+        = f.select :sport_id, SchoolPreferenceMap::SPORTS, :include_blank => "Select Sport"
+      div
+        = f.label "Hulk or Bruce Banner?"
+        br
+        = f.select :sport_acedemic_balance, [["Hulk",0],["Bruce Banner",1]], :include_blank => "Select Alter Ego"
+      div
+        = f.submit 'Finish'

@@ -15,6 +15,7 @@ class VersusController < ApplicationController
 
   def summary
     calculate_final_result
+    @attrs = attribute_values
   end
 
   private
@@ -94,5 +95,17 @@ class VersusController < ApplicationController
                             else
                               'The mascots fought to a draw. Both these schools are a good match for you!'
                             end
+  end
+
+  def attribute_values
+    [@my_school, @opp_school].map do |school|
+      attrs = Hash.new
+      attrs['Proximity'] = "#{@user.distance_from(school.coordinates).to_i} miles"
+      attrs['Weather Type'] = SchoolPreferenceMap::SEASONS[school.preferences.season]
+      attrs['School Size'] = SchoolPreferenceMap::SIZE[school.preferences.school_size]
+      attrs['Location Type'] = SchoolPreferenceMap::LOCATION_TYPE[school.preferences.location_type]
+      attrs['Sport Academic Balance'] = SchoolPreferenceMap::S_A_BALANCE[school.preferences.sport_acedemic_balance]
+      attrs
+    end
   end
 end

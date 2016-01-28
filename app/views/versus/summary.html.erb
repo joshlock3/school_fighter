@@ -8,18 +8,20 @@
 
         <div class="half">
 
-          <h3>User Name</h3>
-          <% @user.attributes.each do |k, v| %>
+          <h3><%= @my_school.name %></h3>
+          <% @attrs[0].each do |k, v| %>
             <div><%= "#{k}: #{v}" %></div>
+            </br>
           <% end %>
 
         </div>
 
         <div class="half">
 
-          <h3><%= @my_school.name %></h3>
-          <% @my_school.preferences.attributes.each do |k, v| %>
+          <h3><%= @opp_school.name %></h3>
+          <% @attrs[1].each do |k, v| %>
             <div><%= "#{k}: #{v}" %></div>
+            </br>
           <% end %>
 
         </div>

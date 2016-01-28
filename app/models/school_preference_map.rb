@@ -23,7 +23,7 @@ class SchoolPreferenceMap < ActiveRecord::Base
 
   SIZE = %w(Small Large Medium)
 
-  LOCATION_TYPE = %(Rural Urban Suburban)
+  LOCATION_TYPE = %w(Rural Urban Suburban)
 
   SPORTS = [["Football",17633],
 ["Softball",17634],

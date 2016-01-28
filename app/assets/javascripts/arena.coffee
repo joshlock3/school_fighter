@@ -83,7 +83,6 @@ class window.Arena
   redraw: =>
     if @school1.allImagesLoaded
       @canvas.width = @canvas.width # clears the canvas
-      @fightMessage()
       if @resultMessageText != ""
         @context.textAlign = 'center'
         @context.fillStyle = '#ffffff'
@@ -91,6 +90,7 @@ class window.Arena
         @context.fillText(@resultMessageText, @canvasWidth / 2, (@canvasHeight / 12))
       @school1.redraw()
       @school2.redraw()
+      @fightMessage()
 
   fightMessage: () ->
     if @startMessageCount < @startMessageLimit

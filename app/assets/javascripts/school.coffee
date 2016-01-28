@@ -175,7 +175,6 @@ class window.DeltaState extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
-    'pow': {x: 0, y: 0},
     'body': {x: 10, y: 150},
     'body-reversed': {x: -10, y: 150},
     'right-arm': {x: 130, y: 150},
@@ -185,6 +184,7 @@ class window.DeltaState extends School
     'left-arm': {x: 0, y: 150},
     'left-arm-reversed': {x: 30, y: 150},
     'head': {x: 0, y: 0},
+    'pow': {x: 0, y: 0},
     'legs': {x: -25, y: 250},
   }
 
@@ -193,7 +193,9 @@ class window.PittsState extends School
   fighting: 'right'
   imageFaces: 'left'
   imageOffset: {
-    'pow': {x: 0, y: 0},
+    'pow': {x: 10, y: 60},
+    'pow-reversed': {x: 25, y: 60},
+
     'head': {x: 10, y: 60},
     'head-reversed': {x: 25, y: 60},
 
@@ -218,7 +220,9 @@ class window.Stritch extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
-    'pow': {x: 0, y: 0},
+    'pow': {x: 85, y: 0},
+    'pow-reversed': {x: -10, y: 0},
+
     'head': {x: 85, y: 0},
     'head-reversed': {x: -10, y: 0},
 
@@ -242,7 +246,7 @@ class window.UCSD extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
-    'pow': {x: 0, y: 0},
+    'pow': {x: 0, y: 50},
     'head': {x: 0, y: 50},
 
     'left-arm': {x: -30, y: 150},
@@ -265,7 +269,9 @@ class window.Umich extends School
   fighting: 'left'
   imageFaces: 'left'
   imageOffset: {
-    'pow': {x: 0, y: 0},
+    'pow': {x: 215, y: 180},
+    'pow-reversed': {x: -110, y: 180},
+
     'head': {x: 215, y: 180},
     'head-reversed': {x: -110, y: 180},
 

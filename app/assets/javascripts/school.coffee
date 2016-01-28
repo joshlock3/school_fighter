@@ -199,24 +199,25 @@ class window.PittsState extends School
 
 class window.Stritch extends School
   school_name: 'stritch',
-  fighting: 'left'
-  imageFaces: 'left'
+  fighting: 'right'
+  imageFaces: 'right'
   imageOffset: {
-    'head': {x: 25, y: 60},
+    'head': {x: 85, y: 0},
+    'head-reversed': {x: -10, y: 0},
 
-    'left-arm-fighting': {x: -180, y: 90},
-    'left-arm-fighting-reversed': {x: 82, y: 90},
-    'left-arm': {x: -126, y: -20},
-    'left-arm-reversed': {x: 110, y: -20},
+    'left-arm': {x: -5, y: 80},
+    'left-arm-reversed': {x: 50, y: 80},
 
-    'body': {x: 10, y: 150},
-    'body-reversed': {x: 10, y: 150},
+    'body': {x: 47, y: 58},
+    'body-reversed': {x: -35, y: 58},
 
-    'right-arm': {x: 100, y: 150},
-    'right-arm-reversed': {x: -60, y: 150},
+    'right-arm': {x: 180, y: 80},
+    'right-arm-reversed': {x: -60, y: 80},
+    'right-arm-fighting': {x: 180, y: 90},
+    'right-arm-fighting-reversed': {x: -200, y: 90},
 
-    'legs': {x: 45, y: 260},
-    'legs-reversed': {x: -25, y: 260},
+    'legs': {x: 45, y: 200},
+    'legs-reversed': {x: -25, y: 200},
   }
 
 class window.UCSD extends School

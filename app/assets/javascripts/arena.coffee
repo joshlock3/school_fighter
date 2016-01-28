@@ -1,19 +1,25 @@
 class window.Arena
   fps: 30,
 
-  constructor: (@canvasDiv, @canvasWidth, @canvasHeight) ->
+  constructor: (@canvasDiv, @canvasWidth, @canvasHeight, @mycollegeipeds, @oppcollegeipeds) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
-    @school1 = new DeltaState(@context, false)
-    #@school1 = new PittsState(@context, false)
-    #@school1 = new Stritch(@context, false)
-    #@school1 = new UCSD(@context, false)
-    #@school1 = new Umich(@context, false)
 
-    #@school2 = new DeltaState(@context, true)
-    #@school2 = new PittsState(@context, true)
-    @school2 = new Stritch(@context, true)
-    #@school2 = new UCSD(@context, true)
-    #@school2 = new Umich(@context, true)
+    @school1 = switch @mycollegeipeds
+      when 170976 then new Umich(@context, false)
+      when 155681 then new PittsState(@context, false)
+      when 238430 then new Stritch(@context, false)
+      when 110680 then new UCSD(@context, false)
+      when 175616 then new DeltaState(@context, false)
+
+    @school2 = switch @oppcollegeipeds
+      when 170976 then new Umich(@context, true)
+      when 155681 then new PittsState(@context, true)
+      when 238430 then new Stritch(@context, true)
+      when 110680 then new UCSD(@context, true)
+      when 175616 then new DeltaState(@context, true)
+
+
+    console.log(@school2, @oppcollegeipeds)
 
     setInterval(@redraw, 1000 / @fps)
 
@@ -58,4 +64,3 @@ class window.Arena
 
     @school1.start()
     @school2.start()
-

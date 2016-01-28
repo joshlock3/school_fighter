@@ -10,6 +10,7 @@ section
 
     .school-container.group
       - School.all.each do |school|
-        - opp_school_id = School.all.pluck(:id).select { |x| x != school.id }.sample
+        - possible_ipeds = [170976, 155681, 238430, 110680, 175616] - [school.ipeds_id]
+        - opp_school_id = School.find_by(ipeds_id: possible_ipeds.sample).id
         = link_to arena_versus_path, class: 'school', data: { user_id: @user.id, opp_school_id: opp_school_id, my_school_id: school.id } do
           = image_tag school.logo, class: 'logo'

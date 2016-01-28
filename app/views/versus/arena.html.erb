@@ -5,6 +5,5 @@
 <div id="canvasDiv"></div>
 
 <script type="text/javascript">
-  var arena = new Arena(document.getElementById("canvasDiv"), 960, 500);
+  var arena = new Arena(document.getElementById("canvasDiv"), 960, 500, <%= @my_school.ipeds_id %>, <%= @opp_school.ipeds_id %> );
 </script>
-

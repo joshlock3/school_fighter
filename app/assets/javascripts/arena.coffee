@@ -3,12 +3,18 @@ class window.Arena
 
   constructor: (@canvasDiv, @canvasWidth, @canvasHeight) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
-    @school1 = new UCSD(@context, false)
+    #@school1 = new UCSD(@context, false)
+    @school1 = new PittsState(@context, false)
     #@school1 = new DeltaState(@context, false)
+
     @school2 = new DeltaState(@context, true)
+    #@school2 = new PittsState(@context, true)
     #@school2 = new UCSD(@context, true)
 
     setInterval(@redraw, 1000 / @fps)
+
+    @school1.start()
+    @school2.start()
 
     setInterval( =>
       @school1.fight()

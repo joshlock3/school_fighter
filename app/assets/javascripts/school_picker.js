@@ -22,16 +22,17 @@
     // })
   };
 
+
   if ($('body.versus.school_picker').length) {
+
     $('.school').click(function(el) {
       el.preventDefault();
 
-      var target = $(el.target);
+      var target = $(el.currentTarget);
       var data = target.data();
 
-      highlightMySchool(data.mySchoolId);
-      pickOpponentSchool(data.oppSchoolId);
-
+      // highlightMySchool(data.mySchoolId);
+      // pickOpponentSchool(data.oppSchoolId);
       setTimeout(sendToArena(target, data), 5000);
     });
   }

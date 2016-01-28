@@ -14,21 +14,13 @@ class BaseSchool
     @images = {}
     setInterval(@updateBreath, 1000 / @fps)
 
-  redraw: =>
-    if @fightState
-      @drawImage('right-arm-fighting', true)
-    else
-      @drawImage('right-arm', true)
-    @drawImage('body')
-    @drawImage('head', true)
-    @drawImage('legs')
-    @drawImage('left-arm', true)
 
   drawImage: (imageName, doBreath) ->
     breathAmt = if doBreath then @breathAmt else 0
     image = @images[imageName]
     offset = @getOffset(imageName)
 
+    console.log(imageName) if image == undefined
     @processReverse(image) if image.processedReverse == undefined
     @context.drawImage(image, @charX + offset['x'], @charY + offset['y'] - breathAmt)
 
@@ -105,15 +97,13 @@ class BaseSchool
 
 class School extends BaseSchool
   fighting: 'right'
+  imageFaces: 'right'
   fightState: false
+  startDistanceTraveled: 0
+  startDistanceIncrement: 10
+  startDistance: 150
 
-  imageOffset: {
-    'body': {x: 0, y: 0},
-    'right-arm': {x: 0, y: 0},
-    'left-arm': {x: 0, y: 0},
-    'head': {x: 0, y: 0},
-    'legs': {x: 0, y: 0},
-  }
+  imageOffset: {}
 
   constructor: (@context, @isReversed) ->
     super
@@ -136,6 +126,34 @@ class School extends BaseSchool
     @fightState = false
 
 
+  start: ->
+    if @startDistanceTraveled < @startDistance
+      setTimeout( =>
+        if @isReversed
+          @charX -= @startDistanceIncrement
+        else
+          @charX += @startDistanceIncrement
+        @startDistanceTraveled += @startDistanceIncrement
+        @start()
+      , 190)
+
+  redraw: =>
+    if @fightState and @fighting == 'right'
+      @drawImage('right-arm-fighting', true)
+    else
+      @drawImage('right-arm', true)
+
+    @drawImage('legs')
+    @drawImage('body', true)
+    @drawImage('head', true)
+
+    if @fightState and @fighting == 'left'
+      @drawImage('left-arm-fighting', true)
+    else
+      @drawImage('left-arm', true)
+
+
+
 # END School
 ###############################################
 
@@ -143,6 +161,7 @@ class School extends BaseSchool
 class window.DeltaState extends School
   school_name: 'delta_state',
   fighting: 'right'
+  imageFaces: 'right'
   imageOffset: {
     'body': {x: 10, y: 150},
     'body-reversed': {x: -10, y: 150},
@@ -156,9 +175,54 @@ class window.DeltaState extends School
     'legs': {x: -25, y: 250},
   }
 
+class window.PittsState extends School
+  school_name: 'pitts_state',
+  fighting: 'left'
+  imageFaces: 'left'
+  imageOffset: {
+    'head': {x: 25, y: 60},
+
+    'left-arm-fighting': {x: -180, y: 90},
+    'left-arm-fighting-reversed': {x: 82, y: 90},
+    'left-arm': {x: -126, y: -20},
+    'left-arm-reversed': {x: 110, y: -20},
+
+    'body': {x: 10, y: 150},
+    'body-reversed': {x: 10, y: 150},
+
+    'right-arm': {x: 100, y: 150},
+    'right-arm-reversed': {x: -60, y: 150},
+
+    'legs': {x: 45, y: 260},
+    'legs-reversed': {x: -25, y: 260},
+  }
+
+class window.Stritch extends School
+  school_name: 'stritch_state',
+  fighting: 'left'
+  imageFaces: 'left'
+  imageOffset: {
+    'head': {x: 25, y: 60},
+
+    'left-arm-fighting': {x: -180, y: 90},
+    'left-arm-fighting-reversed': {x: 82, y: 90},
+    'left-arm': {x: -126, y: -20},
+    'left-arm-reversed': {x: 110, y: -20},
+
+    'body': {x: 10, y: 150},
+    'body-reversed': {x: 10, y: 150},
+
+    'right-arm': {x: 100, y: 150},
+    'right-arm-reversed': {x: -60, y: 150},
+
+    'legs': {x: 45, y: 260},
+    'legs-reversed': {x: -25, y: 260},
+  }
+
 class window.UCSD extends School
   school_name: 'ucsd',
   fighting: 'right'
+  imageFaces: 'right'
   imageOffset: {
     'body': {x: 10, y: 150},
     'right-arm': {x: 90, y: 0},

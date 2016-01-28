@@ -17,6 +17,14 @@
 class SchoolPreferenceMap < ActiveRecord::Base
   belongs_to :school
 
+  SEASONS = %w(Winter Summer Spring/Fall)
+
+  S_A_BALANCE = ['Athletic Power', 'Academic Prestige']
+
+  SIZE = []
+
+  LOCATION_TYPE = []
+
   SPORTS = [["Football",17633],
 ["Softball",17634],
 ["Wrestling",17635],

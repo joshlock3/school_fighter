@@ -1,11 +1,35 @@
 @import "bourbon";
 @import "neat";
+@import "versus";
+@import "application_settings";
 
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
 
 html {
-  background-color: darken(gray, 20%);;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
   font-family: 'Press Start 2P', cursive;
+}
+
+section {
+  width: 100%;
+  padding: 4em;
+}
+
+.container {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+a {
+  color: $color_tertiary;
+  text-decoration: none;
+
+  &:hover, &:active {
+    transition: .3s;
+    color: #fff;
+  }
 }
 
 .hero {
@@ -63,5 +87,12 @@ html {
         }
       }
     }
+  }
+}
+
+.start {
+  .start-button {
+    margin-top: 3em;
+    font-size: 1.5em;
   }
 }

@@ -1,5 +1,5 @@
 .school-container.group
   - School.all.each do |school|
     - opp_school_id = School.all.pluck(:id).select { |x| x != school.id }.sample
-    = link_to school.name, arena_versus_path, class: 'school',
-      data: { user_id: @user.id, opp_school_id: opp_school_id, my_school_id: school.id }
+    = link_to arena_versus_path, class: 'school', data: { user_id: @user.id, opp_school_id: opp_school_id, my_school_id: school.id } do
+      = image_tag school.logo, class: 'logo'

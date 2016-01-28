@@ -1,9 +1,13 @@
-<div>Round <%= params[:round_number] %>: <%= @result %></div>
-
 <section class="arena">
-<div id="canvasDiv"></div>
-</section>
 
-<script type="text/javascript">
-  var arena = new Arena(document.getElementById("canvasDiv"), 960, 500, <%= @my_school.ipeds_id %>, <%= @opp_school.ipeds_id %> );
-</script>
+  <div class="container">
+
+    <div>Round <%= params[:round_number] %> : <%= @result %></div>
+      <div id="canvasDiv"></div>
+
+    <script type="text/javascript">
+      var arena = new Arena(document.getElementById("canvasDiv"), 960, 500, <%= params[:user_id] %>, <%= params[:my_school_id] %>, <%= params[:opp_school_id] %>, <%= @my_school.ipeds_id %>, <%= @opp_school.ipeds_id %>, <%= params[:round_number] %>, <%= @result %> );
+    </script>
+
+  </div>
+</section>

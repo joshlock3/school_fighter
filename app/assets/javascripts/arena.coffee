@@ -4,8 +4,9 @@ class window.Arena
   startMessageLimit: 30
 
 
-  constructor: (@canvasDiv, @canvasWidth, @canvasHeight, @mycollegeipeds, @oppcollegeipeds) ->
+  constructor: (@canvasDiv, @canvasWidth, @canvasHeight, @userId, @myCollegeId, @oppCollegeId, @mycollegeipeds, @oppcollegeipeds, @roundNumber, @result) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
+
 
     @school1 = switch @mycollegeipeds
       when 170976 then new Umich(@context, false)
@@ -13,6 +14,7 @@ class window.Arena
       when 238430 then new Stritch(@context, false)
       when 110680 then new UCSD(@context, false)
       when 175616 then new DeltaState(@context, false)
+      else new DeltaState(@context, false) # shouldn't need this
 
     @school2 = switch @oppcollegeipeds
       when 170976 then new Umich(@context, true)
@@ -20,21 +22,47 @@ class window.Arena
       when 238430 then new Stritch(@context, true)
       when 110680 then new UCSD(@context, true)
       when 175616 then new DeltaState(@context, true)
-
-
-    console.log(@school2, @oppcollegeipeds)
+      else new DeltaState(@context, true) # shouldn't need this
 
     setInterval(@redraw, 1000 / @fps)
 
     @startRound()
-
-
-    setInterval( =>
-      @school1.fight()
+    setTimeout( =>
+      switch @result
+        when 2
+          console.log "win"
+          @school1.fight()
+        when 1
+          console.log "draw"
+          setInterval( =>
+            @school1.fight()
+          , 2000)
+          setInterval( =>
+            @school2.fight()
+          , 3000)
+        when 0
+          console.log "lose"
+          @school2.fight()
+        else console.log "what", @result
     , 3000)
-    setInterval( =>
-      @school2.fight()
-    , 4000)
+
+    setTimeout( =>
+      switch @roundNumber
+        when 3
+          console.log("Summary Page")
+          window.location = "/versus/summary?user_id=" + @userId + "&my_school_id=" + @myCollegeId + "&opp_school_id=" + @oppCollegeId
+        else
+          @roundNumber += 1
+          window.location = "/versus/arena?user_id=" + @userId + "&my_school_id=" + @myCollegeId + "&opp_school_id=" + @oppCollegeId +  "&round_number=" + @roundNumber
+          console.log("next Page", @roundNumber)
+     , 10000)
+
+    #setInterval( =>
+      #@school1.fight()
+    #, 3000)
+    #setInterval( =>
+      #@school2.fight()
+    #, 4000)
 
 
   prepareCanvas: ->

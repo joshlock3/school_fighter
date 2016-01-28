@@ -33,6 +33,12 @@ a {
   }
 }
 
+.clearfix {
+  clear: both;
+}
+
+// Start Screen
+
 .hero {
   margin-top: 5em;
   position: relative;
@@ -56,7 +62,7 @@ a {
 
   .start-button {
     font-size: 1.5em;
-    animation: blink 3s steps(5, start) infinite;
+    animation: blink 1s steps(5, start) infinite;
     -webkit-animation: blink 1s steps(5, start) infinite;
   }
 }

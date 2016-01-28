@@ -11,7 +11,7 @@ section
         div
           = f.label "At a party, Where would you be?"
           br
-          = f.select :school_size, [['In the corner drinking alone', 0], ['The center of it all', 1], ['Chatting one on on with a friend', 2], ['Passed out', [0,1,2].sample]], :include_blank => "Select Party Mode"
+          = f.select :school_size, [['In the corner drinking alone', 0], ['The center of it all', 1], ['Chatting one on one with a friend', 2], ['Passed out', [0,1,2].sample]], :include_blank => "Select Party Mode"
           = f.label "Which do you prefer?"
           br
           = f.select :location_type, [['Open air and a good view of the stars', 0], ['The sights and sounds of the big city', 1], ['Somewhere in between', 2]], :include_blank => "Select Environment"

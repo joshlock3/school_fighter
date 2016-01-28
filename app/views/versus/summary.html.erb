@@ -1,16 +1,34 @@
-<h1><%= @final_result_message %></h1>
 
-<h1><%= @user.name %></h1>
-<% @user.attributes.each do |k, v| %>
-  <div><%= "#{k}: #{v}" %></div>
-<% end %>
+<section>
+    <div class="container">
 
-<h1><%= @my_school.name %></h1>
-<% @my_school.preferences.attributes.each do |k, v| %>
-  <div><%= "#{k}: #{v}" %></div>
-<% end %>
+      <h2 class="message"><%= @final_result_message %></h2>
 
-<h1><%= @opp_school.name %></h1>
-<% @opp_school.preferences.attributes.each do |k, v| %>
-  <div><%= "#{k}: #{v}" %></div>
-<% end %>
+      <div class="summary">
+
+        <div class="half">
+
+          <h3>User Name</h3>
+          <% @user.attributes.each do |k, v| %>
+            <div><%= "#{k}: #{v}" %></div>
+          <% end %>
+
+        </div>
+
+        <div class="half">
+
+          <h3><%= @my_school.name %></h3>
+          <% @my_school.preferences.attributes.each do |k, v| %>
+            <div><%= "#{k}: #{v}" %></div>
+          <% end %>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <a href="" class="coaches"></a>
+
+      </div>
+
+    </div>
+</section>

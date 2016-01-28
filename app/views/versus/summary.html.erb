@@ -19,18 +19,35 @@
         <div class="half">
 
           <h3><%= @opp_school.name %></h3>
-          <% @attrs[1].each do |k, v| %>
-            <div><%= "#{k}: #{v}" %></div>
-            </br>
+            <% @attrs[1].each do |k, v| %>
+              <div><%= "#{k}: #{v}" %></div>
+              </br>
           <% end %>
 
         </div>
 
         <div class="clearfix"></div>
 
-        <a href="" class="coaches"></a>
+        <h3 class="back-to-school"><%= link_to 'Challenge a New School', school_picker_versus_path(user_id: @user.id) %></h3>
+
+        <h4 id="coach-js">Coaches at These Schools for Your Sport</h4>
+        <div id="coach-info-js">
+          <ul>
+            <% @coaches.each do |coach| %>
+              <li><%= coach.coach_name %>, <%= coach.coach_position%> (<%= coach.college_name %>)</li>
+            <% end %>
+          </ul>
+        </div>
 
       </div>
 
     </div>
 </section>
+
+<script>
+  $(document).ready(function() {
+    $( "#coach-js" ).click(function() {
+      $( "#coach-info-js" ).show(200);
+    });
+  });
+</script>

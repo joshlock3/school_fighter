@@ -16,6 +16,7 @@ class VersusController < ApplicationController
   def summary
     calculate_final_result
     @attrs = attribute_values
+    @coaches = CollegeSportCoach.where(sport_id: @user.sport_id, school_id: [@my_school.id, @opp_school.id])
   end
 
   private

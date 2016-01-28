@@ -16,6 +16,7 @@ class School < ActiveRecord::Base
   include Geolocatable
 
   has_one :preferences, class_name: 'SchoolPreferenceMap'
+  has_many :coaches, class_name: 'CollegeSportCoach'
 
   geocoded_by :zip
   after_validation :geocode, if: ->(obj){ obj.zip.present? && obj.zip_changed? }

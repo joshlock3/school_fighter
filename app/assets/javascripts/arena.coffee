@@ -5,10 +5,17 @@ class window.Arena
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
     @school1 = new UCSD(@context, false)
     #@school1 = new DeltaState(@context, false)
-    #@school2 = new DeltaState(@context, true)
-    @school2 = new UCSD(@context, true)
+    @school2 = new DeltaState(@context, true)
+    #@school2 = new UCSD(@context, true)
 
     setInterval(@redraw, 1000 / @fps)
+
+    setInterval( =>
+      @school1.fight()
+    , 3000)
+    setInterval( =>
+      @school2.fight()
+    , 4000)
 
 
   prepareCanvas: ->

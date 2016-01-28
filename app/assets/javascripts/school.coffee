@@ -1,12 +1,14 @@
 class School
-  numResourceLoaded: 0,
-  totalResources: 0,
-  charX: 245,
-  charY: 50,
-  breathInc: 0.1,
-  breathDir: 1,
-  breathAmt: 0,
-  breathMax: 2,
+  numResourceLoaded: 0
+  totalResources: 0
+  charX: 145
+  charY: 50
+  breathInc: 0.1
+  breathDir: 1
+  breathAmt: 0
+  breathMax: 2
+  fighting: 'right'
+  fightState: false
 
   imageOffset: {
     'body': {x: 0, y: 0},
@@ -18,7 +20,7 @@ class School
 
   constructor: (@context, @isReversed) ->
     @buffer = @createBuffer()
-    @charX += 300 if @isReversed
+    @charX += 600 if @isReversed
     @images = {}
 
     @loadImage('body')
@@ -26,19 +28,28 @@ class School
     @loadImage('left-arm')
     @loadImage('legs')
     @loadImage('right-arm')
+    if @fighting == 'right'
+      @loadImage('right-arm-fighting')
+    else
+      @loadImage('left-arm-fighting')
 
     setInterval(@updateBreath, 1000 / @fps)
 
-  idle: ->
-  punch: ->
-  damage: ->
+  fight: ->
+    @fightState = true
+    setTimeout(@unFight, 1000)
+
+  unFight: =>
+    @fightState = false
+
+
+  damage: =>
 
   loadImage: (name) ->
     @totalResources += 1
     @images[name] = new Image()
     @images[name].onload = =>
       @numResourceLoaded += 1
-    #@images[name].src = "http://localhost:3000/assets/" + @school_name + "/" + name + ".png"
     @images[name].src = "/assets/" + @school_name + "/" + name + ".png"
 
   allImagesLoaded: ->
@@ -50,8 +61,11 @@ class School
     buffer.height = 500
     return buffer
 
-  redraw: ->
-    @drawImage('right-arm', true)
+  redraw: =>
+    if @fightState
+      @drawImage('right-arm-fighting', true)
+    else
+      @drawImage('right-arm', true)
     @drawImage('body')
     @drawImage('head', true)
     @drawImage('legs')
@@ -127,6 +141,8 @@ class window.DeltaState extends School
     'body-reversed': {x: -10, y: 150},
     'right-arm': {x: 130, y: 150},
     'right-arm-reversed': {x: -50, y: 150},
+    'right-arm-fighting': {x: 130, y: 150},
+    'right-arm-fighting-reversed': {x: -70, y: 150},
     'left-arm': {x: 0, y: 150},
     'left-arm-reversed': {x: 30, y: 150},
     'head': {x: 0, y: 0},
@@ -139,6 +155,8 @@ class window.UCSD extends School
     'body': {x: 10, y: 150},
     'right-arm': {x: 90, y: 0},
     'right-arm-reversed': {x: -90, y: 0},
+    'right-arm-fighting': {x: 30, y: 20},
+    'right-arm-fighting-reversed': {x: -150, y: 20},
     'left-arm': {x: -30, y: 150},
     'left-arm-reversed': {x: 60, y: 150},
     'head': {x: 0, y: 50},

@@ -224,14 +224,20 @@ class window.UCSD extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
+    'head': {x: 0, y: 50},
+
+    'left-arm': {x: -30, y: 150},
+    'left-arm-reversed': {x: 60, y: 150},
+
     'body': {x: 10, y: 150},
+    'body-reversed': {x: 20, y: 150},
+
+
     'right-arm': {x: 90, y: 0},
     'right-arm-reversed': {x: -90, y: 0},
     'right-arm-fighting': {x: 30, y: 20},
     'right-arm-fighting-reversed': {x: -150, y: 20},
-    'left-arm': {x: -30, y: 150},
-    'left-arm-reversed': {x: 60, y: 150},
-    'head': {x: 0, y: 50},
+
     'legs': {x: -35, y: 250},
   }
 

@@ -177,24 +177,26 @@ class window.DeltaState extends School
 
 class window.PittsState extends School
   school_name: 'pitts_state',
-  fighting: 'left'
+  fighting: 'right'
   imageFaces: 'left'
   imageOffset: {
-    'head': {x: 25, y: 60},
+    'head': {x: 10, y: 60},
+    'head-reversed': {x: 25, y: 60},
 
-    'left-arm-fighting': {x: -180, y: 90},
-    'left-arm-fighting-reversed': {x: 82, y: 90},
-    'left-arm': {x: -126, y: -20},
-    'left-arm-reversed': {x: 110, y: -20},
+    'left-arm': {x: -86, y: 150},
+    'left-arm-reversed': {x: 100, y: 150},
 
-    'body': {x: 10, y: 150},
+    'body': {x: 0, y: 150},
     'body-reversed': {x: 10, y: 150},
 
-    'right-arm': {x: 100, y: 150},
-    'right-arm-reversed': {x: -60, y: 150},
+    'right-arm': {x: 90, y: -20},
+    'right-arm-reversed': {x: -120, y: -20},
+    'right-arm-fighting': {x: 70, y: 90},
+    'right-arm-fighting-reversed': {x: -182, y: 90},
 
-    'legs': {x: 45, y: 260},
-    'legs-reversed': {x: -25, y: 260},
+
+    'legs': {x: -35, y: 260},
+    'legs-reversed': {x: 50, y: 260},
   }
 
 class window.Stritch extends School

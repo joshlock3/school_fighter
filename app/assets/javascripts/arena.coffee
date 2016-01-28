@@ -60,7 +60,6 @@ class window.Arena
 
   fightMessage: () ->
     if @startMessageCount < @startMessageLimit
-      console.log @startMessageCount
       @context.textAlign = 'center'
       @context.fillStyle = '#ffffff'
       @context.font="30px 'Press Start 2P'"

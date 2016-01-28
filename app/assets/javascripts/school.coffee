@@ -1,4 +1,4 @@
-class School
+class BaseSchool
   numResourceLoaded: 0
   totalResources: 0
   charX: 145
@@ -7,59 +7,12 @@ class School
   breathDir: 1
   breathAmt: 0
   breathMax: 2
-  fighting: 'right'
-  fightState: false
-
-  imageOffset: {
-    'body': {x: 0, y: 0},
-    'right-arm': {x: 0, y: 0},
-    'left-arm': {x: 0, y: 0},
-    'head': {x: 0, y: 0},
-    'legs': {x: 0, y: 0},
-  }
 
   constructor: (@context, @isReversed) ->
     @buffer = @createBuffer()
     @charX += 600 if @isReversed
     @images = {}
-
-    @loadImage('body')
-    @loadImage('head')
-    @loadImage('left-arm')
-    @loadImage('legs')
-    @loadImage('right-arm')
-    if @fighting == 'right'
-      @loadImage('right-arm-fighting')
-    else
-      @loadImage('left-arm-fighting')
-
     setInterval(@updateBreath, 1000 / @fps)
-
-  fight: ->
-    @fightState = true
-    setTimeout(@unFight, 1000)
-
-  unFight: =>
-    @fightState = false
-
-
-  damage: =>
-
-  loadImage: (name) ->
-    @totalResources += 1
-    @images[name] = new Image()
-    @images[name].onload = =>
-      @numResourceLoaded += 1
-    @images[name].src = "/assets/" + @school_name + "/" + name + ".png"
-
-  allImagesLoaded: ->
-    (@numResourceLoaded == @totalResources)
-
-  createBuffer: ->
-    buffer = document.createElement('canvas')
-    buffer.width = 500
-    buffer.height = 500
-    return buffer
 
   redraw: =>
     if @fightState
@@ -71,14 +24,12 @@ class School
     @drawImage('legs')
     @drawImage('left-arm', true)
 
-
   drawImage: (imageName, doBreath) ->
     breathAmt = if doBreath then @breathAmt else 0
     image = @images[imageName]
     offset = @getOffset(imageName)
 
     @processReverse(image) if image.processedReverse == undefined
-
     @context.drawImage(image, @charX + offset['x'], @charY + offset['y'] - breathAmt)
 
   getOffset: (imageName) ->
@@ -102,7 +53,6 @@ class School
         image.processedReverse = true
       catch error
         #console.log(error)
-
 
   reverseImage: (imageData) ->
     i = 0
@@ -134,8 +84,65 @@ class School
       if @breathAmt > @breathMax
         @breathDir = 1
 
+  loadImage: (name) ->
+    @totalResources += 1
+    @images[name] = new Image()
+    @images[name].onload = =>
+      @numResourceLoaded += 1
+    @images[name].src = "/assets/" + @school_name + "/" + name + ".png"
+
+  allImagesLoaded: ->
+    (@numResourceLoaded == @totalResources)
+
+  createBuffer: ->
+    buffer = document.createElement('canvas')
+    buffer.width = 500
+    buffer.height = 500
+    return buffer
+
+# END BaseSchool
+###############################################
+
+class School extends BaseSchool
+  fighting: 'right'
+  fightState: false
+
+  imageOffset: {
+    'body': {x: 0, y: 0},
+    'right-arm': {x: 0, y: 0},
+    'left-arm': {x: 0, y: 0},
+    'head': {x: 0, y: 0},
+    'legs': {x: 0, y: 0},
+  }
+
+  constructor: (@context, @isReversed) ->
+    super
+
+    @loadImage('body')
+    @loadImage('head')
+    @loadImage('left-arm')
+    @loadImage('legs')
+    @loadImage('right-arm')
+    if @fighting == 'right'
+      @loadImage('right-arm-fighting')
+    else
+      @loadImage('left-arm-fighting')
+
+  fight: ->
+    @fightState = true
+    setTimeout(@unFight, 1000)
+
+  unFight: =>
+    @fightState = false
+
+
+# END School
+###############################################
+
+# Begin College Classes
 class window.DeltaState extends School
   school_name: 'delta_state',
+  fighting: 'right'
   imageOffset: {
     'body': {x: 10, y: 150},
     'body-reversed': {x: -10, y: 150},
@@ -151,6 +158,7 @@ class window.DeltaState extends School
 
 class window.UCSD extends School
   school_name: 'ucsd',
+  fighting: 'right'
   imageOffset: {
     'body': {x: 10, y: 150},
     'right-arm': {x: 90, y: 0},

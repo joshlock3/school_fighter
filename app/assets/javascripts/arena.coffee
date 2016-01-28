@@ -3,9 +3,13 @@ class window.Arena
 
   constructor: (@canvasDiv, @canvasWidth, @canvasHeight) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
-    @school1 = new DeltaState(@context)
+    @school1 = new UCSD(@context, false)
+    #@school1 = new DeltaState(@context, false)
+    #@school2 = new DeltaState(@context, true)
+    @school2 = new UCSD(@context, true)
 
     setInterval(@redraw, 1000 / @fps)
+
 
   prepareCanvas: ->
     # Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
@@ -27,3 +31,4 @@ class window.Arena
     if @school1.allImagesLoaded
       @canvas.width = @canvas.width # clears the canvas
       @school1.redraw()
+      @school2.redraw()

@@ -237,21 +237,22 @@ class window.UCSD extends School
 
 class window.Umich extends School
   school_name: 'umich',
-  fighting: 'right'
+  fighting: 'left'
   imageFaces: 'left'
   imageOffset: {
-    'head': {x: 25, y: 60},
+    'head': {x: 215, y: 180},
+    'head-reversed': {x: -110, y: 180},
 
-    'left-arm': {x: -126, y: -20},
-    'left-arm-reversed': {x: 110, y: -20},
+    'left-arm': {x: 45, y: 90},
+    'left-arm-reversed': {x: -20, y: 90},
+    'left-arm-fighting': {x: 75, y: 110},
+    'left-arm-fighting-reversed': {x: -80, y: 110},
 
-    'body': {x: 10, y: 150},
-    'body-reversed': {x: 10, y: 150},
+    'body': {x: 130, y: 210},
+    'body-reversed': {x: -90, y: 210},
 
-    'right-arm': {x: 100, y: 150},
-    'right-arm-reversed': {x: -60, y: 150},
-    'right-arm-fighting': {x: -180, y: 90},
-    'right-arm-fighting-reversed': {x: 82, y: 90},
+    'right-arm': {x: 200, y: 150},
+    'right-arm-reversed': {x: -180, y: 150},
 
     'legs': {x: 0, y: 260},
     'legs-reversed': {x: -80, y: 260},

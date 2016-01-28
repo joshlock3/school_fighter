@@ -16,7 +16,8 @@ html {
 
 section {
   width: 100%;
-  padding: 4em;
+  // padding: 4em;
+  @include vertical-center;
 }
 
 .container {

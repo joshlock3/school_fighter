@@ -198,7 +198,7 @@ class window.PittsState extends School
   }
 
 class window.Stritch extends School
-  school_name: 'stritch_state',
+  school_name: 'stritch',
   fighting: 'left'
   imageFaces: 'left'
   imageOffset: {
@@ -233,4 +233,26 @@ class window.UCSD extends School
     'left-arm-reversed': {x: 60, y: 150},
     'head': {x: 0, y: 50},
     'legs': {x: -35, y: 250},
+  }
+
+class window.Umich extends School
+  school_name: 'umich',
+  fighting: 'right'
+  imageFaces: 'left'
+  imageOffset: {
+    'head': {x: 25, y: 60},
+
+    'left-arm': {x: -126, y: -20},
+    'left-arm-reversed': {x: 110, y: -20},
+
+    'body': {x: 10, y: 150},
+    'body-reversed': {x: 10, y: 150},
+
+    'right-arm': {x: 100, y: 150},
+    'right-arm-reversed': {x: -60, y: 150},
+    'right-arm-fighting': {x: -180, y: 90},
+    'right-arm-fighting-reversed': {x: 82, y: 90},
+
+    'legs': {x: 0, y: 260},
+    'legs-reversed': {x: -80, y: 260},
   }

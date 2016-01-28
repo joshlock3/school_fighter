@@ -14,6 +14,7 @@ class VersusController < ApplicationController
   end
 
   def summary
+    calculate_final_result
   end
 
   private
@@ -28,9 +29,14 @@ class VersusController < ApplicationController
   end
 
   def calculate_preferences
-    @round1_result = calculate_round1_result
-    @round2_result = calculate_round2_result
-    @round3_result = calculate_round3_result
+    @result = case params[:round_number]
+              when '1'
+                  calculate_round1_result
+              when '2'
+                calculate_round2_result
+              when '3'
+                calculate_round3_result
+              end
   end
 
   def calculate_round1_result
@@ -70,14 +76,23 @@ class VersusController < ApplicationController
   end
 
   def print_result(points)
-    result_in_worlds =
-      if points >= 3
-       'win'
-     elsif points <= 1
-       'loss'
-     else
-       'draw'
-     end
-    "#{result_in_worlds} (#{points})"
+    if points >= 3
+      2
+    elsif points <= 1
+      0
+    else
+      1
+    end
+  end
+
+  def calculate_final_result
+    total_points = calculate_round1_result + calculate_round2_result + calculate_round3_result
+    @final_result_message = if total_points >= 4
+                              "Your mascot won! Looks like #{@my_school.name} is the better fit for you."
+                            elsif total_points <= 2
+                              "Your mascot lost! Looks like #{@opp_school.name} is the better fit for you."
+                            else
+                              'The mascots fought to a draw. Both these schools are a good match for you!'
+                            end
   end
 end

@@ -5,6 +5,7 @@
     url += '?user_id=' + data.userId;
     url += '&my_school_id=' + data.mySchoolId;
     url += '&opp_school_id=' + data.oppSchoolId;
+    url += '&round_number=1';
 
     window.location.href = url;
   };

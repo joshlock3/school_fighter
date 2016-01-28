@@ -8,4 +8,10 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( school_picker.js michigan-law-quad.jpg )
+Rails.application.config.assets.precompile += %w(
+  school_picker.js
+  start.js
+  street-fighter-logo.png
+  mascot-logo.png
+  michigan-law-quad.jpg
+)

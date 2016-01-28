@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= require school_picker
+//= require start

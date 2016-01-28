@@ -1,6 +1,12 @@
-= form_for @user do |f|
-    div
-      = f.label "Please enter your name"
-      = f.text_field :name
-    div
-      = f.submit 'Next'
+
+section
+  .container
+
+    .user-info
+
+      = form_for @user do |f|
+          div
+            = f.label "Please Enter Your Name"
+            = f.text_field :name
+          div
+            = f.submit 'Next'

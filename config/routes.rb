@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#new'
+  root to: 'landing#start'
 
   resources :users, only: [:new, :create, :index, :destroy] do
     resources :steps, only: [:show, :update], controller: 'user/steps'

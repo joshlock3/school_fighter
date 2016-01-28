@@ -15,13 +15,13 @@ class BaseSchool
     setInterval(@updateBreath, 1000 / @fps)
 
 
-  drawImage: (imageName, doBreath) ->
+  drawImage: (imageName, doBreath, ignoreReverse) ->
     breathAmt = if doBreath then @breathAmt else 0
     image = @images[imageName]
     offset = @getOffset(imageName)
 
     console.log(imageName) if image == undefined
-    @processReverse(image) if image.processedReverse == undefined
+    @processReverse(image, ignoreReverse) if image.processedReverse == undefined
     @context.drawImage(image, @charX + offset['x'], @charY + offset['y'] - breathAmt)
 
   getOffset: (imageName) ->
@@ -30,8 +30,9 @@ class BaseSchool
     else
       return @imageOffset[imageName]
 
-  processReverse: (image) =>
-    if @isReversed
+  processReverse: (image, ignoreReverse) =>
+    ignoreReverse = true if ignoreReverse == undefined
+    if @isReversed && ignoreReverse
       try
         width = image.width
         height = image.height
@@ -76,12 +77,12 @@ class BaseSchool
       if @breathAmt > @breathMax
         @breathDir = 1
 
-  loadImage: (name) ->
+  loadImage: (name, file_path) ->
     @totalResources += 1
     @images[name] = new Image()
     @images[name].onload = =>
       @numResourceLoaded += 1
-    @images[name].src = "/assets/" + @school_name + "/" + name + ".png"
+    @images[name].src = "/assets/"  + file_path + ".png"
 
   allImagesLoaded: ->
     (@numResourceLoaded == @totalResources)
@@ -99,6 +100,7 @@ class School extends BaseSchool
   fighting: 'right'
   imageFaces: 'right'
   fightState: false
+  powStat: false
   startDistanceTraveled: 0
   startDistanceIncrement: 10
   startDistance: 150
@@ -108,15 +110,16 @@ class School extends BaseSchool
   constructor: (@context, @isReversed) ->
     super
 
-    @loadImage('body')
-    @loadImage('head')
-    @loadImage('left-arm')
-    @loadImage('legs')
-    @loadImage('right-arm')
+    @loadImage('pow', 'pow')
+    @loadImage('body', @school_name + '/body')
+    @loadImage('head', @school_name + '/head')
+    @loadImage('left-arm', @school_name + '/left-arm')
+    @loadImage('legs', @school_name + '/legs')
+    @loadImage('right-arm', @school_name + '/right-arm')
     if @fighting == 'right'
-      @loadImage('right-arm-fighting')
+      @loadImage('right-arm-fighting', @school_name + '/right-arm-fighting')
     else
-      @loadImage('left-arm-fighting')
+      @loadImage('left-arm-fighting', @school_name + '/left-arm-fighting')
 
   fight: ->
     @fightState = true
@@ -125,6 +128,12 @@ class School extends BaseSchool
   unFight: =>
     @fightState = false
 
+  pow: ->
+    @powState = true
+    setTimeout(@unPow, 1300)
+
+  unPow: =>
+    @powState = false
 
   start: ->
     if @startDistanceTraveled < @startDistance
@@ -152,6 +161,9 @@ class School extends BaseSchool
     else
       @drawImage('left-arm', true)
 
+    if @powState
+      @drawImage('pow', false, false)
+
 
 
 # END School
@@ -163,6 +175,7 @@ class window.DeltaState extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
+    'pow': {x: 0, y: 0},
     'body': {x: 10, y: 150},
     'body-reversed': {x: -10, y: 150},
     'right-arm': {x: 130, y: 150},
@@ -180,6 +193,7 @@ class window.PittsState extends School
   fighting: 'right'
   imageFaces: 'left'
   imageOffset: {
+    'pow': {x: 0, y: 0},
     'head': {x: 10, y: 60},
     'head-reversed': {x: 25, y: 60},
 
@@ -204,6 +218,7 @@ class window.Stritch extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
+    'pow': {x: 0, y: 0},
     'head': {x: 85, y: 0},
     'head-reversed': {x: -10, y: 0},
 
@@ -227,6 +242,7 @@ class window.UCSD extends School
   fighting: 'right'
   imageFaces: 'right'
   imageOffset: {
+    'pow': {x: 0, y: 0},
     'head': {x: 0, y: 50},
 
     'left-arm': {x: -30, y: 150},
@@ -249,6 +265,7 @@ class window.Umich extends School
   fighting: 'left'
   imageFaces: 'left'
   imageOffset: {
+    'pow': {x: 0, y: 0},
     'head': {x: 215, y: 180},
     'head-reversed': {x: -110, y: 180},
 

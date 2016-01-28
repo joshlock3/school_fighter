@@ -33,19 +33,23 @@ class window.Arena
           console.log "win"
           @resultMessage("You Win!")
           @school1.fight()
+          @school2.pow()
         when 1
           console.log "draw"
           @resultMessage("Draw!")
           setInterval( =>
             @school1.fight()
+            @school2.pow()
           , 2000)
           setInterval( =>
             @school2.fight()
+            @school1.pow()
           , 3000)
         when 0
           console.log "lose"
           @resultMessage("You Lost!")
           @school2.fight()
+          @school1.pow()
         else console.log "what", @result
     , 3000)
 

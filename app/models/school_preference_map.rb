@@ -21,9 +21,9 @@ class SchoolPreferenceMap < ActiveRecord::Base
 
   S_A_BALANCE = ['Athletic Power', 'Academic Prestige']
 
-  SIZE = []
+  SIZE = %w(Small Large Medium)
 
-  LOCATION_TYPE = []
+  LOCATION_TYPE = %(Rural Urban Suburban)
 
   SPORTS = [["Football",17633],
 ["Softball",17634],

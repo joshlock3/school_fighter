@@ -28,6 +28,7 @@ gem 'rspec-rails'
 gem 'geocoder'
 
 gem 'bourbon'
+gem 'neat'
 
 group :production, :staging do
   gem "heroku-forward"                      # Beat Heroku's 60s boot timeout with a proxy.

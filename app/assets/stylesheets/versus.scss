@@ -1,12 +1,12 @@
 // Place all the styles related to the Versus controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import 'application_settings';
 
 .school-container {
   margin: 200px auto;
   border: 2px solid black;
-  width: 504px;
+  width: 804px;
 }
 
 .group:after {
@@ -17,11 +17,18 @@
 
 .school {
   vertical-align: middle;
-  width: 100px;
-  height: 100px;
+  width: 160px;
+  height: 160px;
   float: left;
-  border: 1px solid black;
+  border: 2px solid black;
   background: #fff;
+  opacity: .7;
+
+  &:hover {
+    opacity: 1;
+    transition: .3s;
+    border: 2px solid $color_secondary;
+  }
 
   .logo {
     width: 100%;

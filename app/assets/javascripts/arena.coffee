@@ -3,29 +3,29 @@ class window.Arena
 
   constructor: (@canvasDiv, @canvasWidth, @canvasHeight) ->
     @prepareCanvas(@canvasDiv, @canvasWidth, @canvasHeight)
-    #@school1 = new UCSD(@context, false)
+    @school1 = new DeltaState(@context, false)
     #@school1 = new PittsState(@context, false)
-    #@school1 = new DeltaState(@context, false)
     #@school1 = new Stritch(@context, false)
-    @school1 = new Umich(@context, false)
+    #@school1 = new UCSD(@context, false)
+    #@school1 = new Umich(@context, false)
 
     #@school2 = new DeltaState(@context, true)
     #@school2 = new PittsState(@context, true)
+    @school2 = new Stritch(@context, true)
     #@school2 = new UCSD(@context, true)
-    #@school2 = new Stritch(@context, true)
-    @school2 = new Umich(@context, true)
+    #@school2 = new Umich(@context, true)
 
     setInterval(@redraw, 1000 / @fps)
 
-    #@school1.start()
-    #@school2.start()
+    @startRound()
 
-    #setInterval( =>
-      #@school1.fight()
-    #, 3000)
-    #setInterval( =>
-      #@school2.fight()
-    #, 4000)
+
+    setInterval( =>
+      @school1.fight()
+    , 3000)
+    setInterval( =>
+      @school2.fight()
+    , 4000)
 
 
   prepareCanvas: ->
@@ -42,10 +42,20 @@ class window.Arena
     @context = @canvas.getContext("2d"); # Grab the 2d canvas context
 
     @canvas.width = @canvas.width; # clears the canvas
-    @context.fillText("loading...", 40, 140)
 
   redraw: =>
-    if @school1.allImagesLoaded
-      @canvas.width = @canvas.width # clears the canvas
-      @school1.redraw()
-      @school2.redraw()
+    @context.textAlign = 'center'
+    @context.fillStyle = '#ffffff'
+    @context.font="30px 'Press Start 2P'"
+    @context.fillText('Fight!', @canvasWidth / 2, @canvasHeight / 2)
+
+    #if @school1.allImagesLoaded
+      #@canvas.width = @canvas.width # clears the canvas
+      #@school1.redraw()
+      #@school2.redraw()
+
+  startRound: ->
+
+    @school1.start()
+    @school2.start()
+
